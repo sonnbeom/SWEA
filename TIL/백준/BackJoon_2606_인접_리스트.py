@@ -13,6 +13,3 @@ for i in range(edge):
 
 q = deque([1])
 visited[1] = True
-
-def bfs():
-    

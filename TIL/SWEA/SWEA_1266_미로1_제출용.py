@@ -1,6 +1,7 @@
 for _ in range(10):
     testCase = int(input())
-    startX, startY = 0
+    startX = 0 
+    startY = 0
     dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
 

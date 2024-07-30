@@ -29,15 +29,15 @@ def checkVisited(idx):
     temp = arr[idx]
     partner = getPartner(temp)
     for i in range(idx + 1, t):
-        if arr[i] == partner:
+        if arr[i] == partner and visited[i] == False:
             visited[idx] = True
             visited[i] = True
             return
     
-    
 for i in range(t):
     if visited[i] == False:
         checkVisited(i)
+
 if False in visited:
     print(0)
 else:

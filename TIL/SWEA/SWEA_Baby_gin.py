@@ -69,20 +69,3 @@ else:
 print(res)
 
 
-
-
-
-# def isSeq(reqList):
-#     for i in range(2):
-#         if reqList[i] + 1 == reqList[i+1]:
-#             continue
-#         else:
-#             return False
-#     return True
-# def isSeqTwice(reqList):
-#     for i in range(3,5):
-#         if reqList[i] + 1 == reqList[i+1]:
-#             continue
-#         else:
-#             return False
-#     return True

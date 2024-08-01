@@ -14,3 +14,13 @@ n = int(input())
 arr = list(map(int, input().split()))
 res = selectionSort(arr)
 print(*res)
+
+'''
+5 4 3
+1 2 3
+t = 1 
+1 = 2
+2 = 1
+
+
+'''

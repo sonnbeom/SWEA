@@ -6,6 +6,7 @@ visited = [[False for _ in range(t)] for _ in range(t)]
 for i in range(t/2):
     a, b = map(int, input().split())
     arr[a][b] = b
+    arr[b][a] = b
 
 def dfs(y, x):
     pass

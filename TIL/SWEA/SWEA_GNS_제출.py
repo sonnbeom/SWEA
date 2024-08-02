@@ -9,7 +9,7 @@ for _ in range(k):
     for numStr in req:
         if numStr == "ZRO":
             dic["ZRO"].append("ZRO ")
-        elif numStr == "One":
+        elif numStr == "ONE":
             dic["ONE"].append("ONE ")
         elif numStr == "TWO":
             dic["TWO"].append("TWO ")

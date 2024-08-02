@@ -1,19 +1,25 @@
 t, start  = map(int, input().split())
 
-arr = [[0 for _ in range(t)] for _ in range(t)]
-visited = [[False for _ in range(t)] for _ in range(t)]
+arr = [[0 for _ in range(101)] for _ in range(101)]
+visited = [False for _ in range(101)]
 
-for i in range(t/2):
-    a, b = map(int, input().split())
+tempList = list(map(int, input().split()))
+
+i = 0
+while i < t-1:
+    a = tempList[i]
+    b = tempList[i+1]
+
     arr[a][b] = b
-    arr[b][a] = b
+    i += 2
 
-def dfs(y, x):
-    pass
+depthList = []
+def dfs(depth, start):
+    visited[start] = True
+    depthList.append((start, depth))
+    for i in range(t):
+        if arr[start][i] != 0 and visited[i] == False:
+            dfs(depth+1, i)
     
-    
-for i in range(t):
-    for j in range(t):
-        if arr[i][j] != 0 and visited[i][j] == False:
-            dfs(i, j)
-            pass
+dfs(0, start)
+print(*depthList)

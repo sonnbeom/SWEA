@@ -21,8 +21,6 @@ for i in range(arrLen-1):
         else:
              partIdx = getPartnerIdx(i)
              iron.append((i, partIdx))
-# print(*raz)
-# print(*iron)
 res = 0
 for ior in iron:
     tempCount = 1
@@ -34,6 +32,5 @@ for ior in iron:
         if left > lRange and right < rRange:
             tempCount += 1
     res += tempCount
-    print(f'lRange = {lRange} rRange = {rRange} tempCount = {tempCount}')
 print(res)
         

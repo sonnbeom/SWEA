@@ -1,9 +1,3 @@
-import random
-'''
-
-00 01
-10 11
-'''
 r, c = map(int, input().split())
 dx = [1, -1, 0, 0] 
 dy = [0, 0, 1, -1]
@@ -62,49 +56,75 @@ def decide(req):
 
 arr = [list(input()) for _ in range(r)]
 
-res = ''
+res = 'NO'
 
 def check():
     res = False
-    for i in range(c):
+    for i in range(r):
         if '@' in arr[i]:
            res = True
            return res
     return res
-def func(y, x):
-    # go = True
-    # while go:
-    global res
-    nowX = x + dx[direc]
-    nowY = y + dy[direc]
-    if 0 > nowY:
-        nowY = r-1
-    elif nowY >= r:
-        nowY = 0
-    elif nowX < 0:
-        nowX = c-1
-    elif nowX >= c:
-        nowX = 0
-    temp = arr[nowY][nowX]
-    if temp == '@':
-        res = 'YES'
-        return
-    if temp == '?':
-        for i in range(4):
-            qX = nowX + dx[i]
-            qY = nowY + dy[i]
-            func(qY, qX)
-    decide(temp)
-    if (memory, direc) in visited[nowY][nowX]:
-        return
-    visited[nowY][nowX].append((memory, direc))
-    func(nowY, nowX)
+
+def rangeCheckX(x):
+    if x < 0:
+        return c-1
+    elif x >= c:
+        return 0
+    else:
+        return x
+def rangeCheckY(y):
+    if y < 0:
+        return r-1
+    elif y >= r:
+        return 0
+    else:
+        return y
+def func():
+    global direc
+    q = [(0, -1, 0)]
+    while q:
+        y, x, dir = q.pop(0)
+        direc = dir
+        nowX = x + dx[dir]
+        nowY = y + dy[dir]
+        nowX = rangeCheckX(nowX)
+        nowY = rangeCheckY(nowY)
+        
+        temp = arr[nowY][nowX]
+        if temp == '@':
+            q.clear()
+            return 'YES'
+        if temp == '?':
+            if (memory, direc) in visited[nowY][nowX]:
+                q.clear()
+                return "NO"
+            else:
+                visited[nowY][nowX].append((memory, dir))
+            for i in range(4):
+                #왔던 방향은 제거 인덱스 체크
+                qX = nowX + dx[i]
+                qX = rangeCheckX(qX)
+                qY = nowY + dy[i]
+                qY = rangeCheckY(qY)
+                
+                if y != qY or x != qX:
+                    q.insert(0, (nowY, nowX, i))
+
+                # 여기에 visited에 확인, 넣고 q.append(nowY,nowY)
+        else:
+            decide(temp)
+            dir = direc
+            if visited[nowY][nowX].count((memory, dir)) >= 2:
+                q.clear()
+                return "NO"
+            visited[nowY][nowX].append((memory, dir))
+            q.append((nowY, nowX, dir))
 
 can = check()
 if can:
-    func(0, -1)
-# else:
-#     res = "NO"
-
+    res = func()
+else:
+    res = "NO"
 print(res)
     

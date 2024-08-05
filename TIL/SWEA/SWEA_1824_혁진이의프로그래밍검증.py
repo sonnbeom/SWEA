@@ -84,7 +84,8 @@ def func():
     global direc
     q = [(0, -1, 0)]
     while q:
-        y, x, dir = q.pop(0)
+        y, x, dir = q.pop()
+        # y, x, dir = q.pop(0)
         direc = dir
         nowX = x + dx[dir]
         nowY = y + dy[dir]
@@ -109,7 +110,8 @@ def func():
                 qY = rangeCheckY(qY)
                 
                 if y != qY or x != qX:
-                    q.insert(0, (nowY, nowX, i))
+                    q.append((nowY, nowX, i))
+                    # q.insert(0, (nowY, nowX, i))
 
                 # 여기에 visited에 확인, 넣고 q.append(nowY,nowY)
         else:

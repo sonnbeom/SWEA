@@ -1,10 +1,7 @@
 n = int(input())
 arr = [list(map(int, input().split())) for _ in range(n)]
 visited = [[False for _ in range(n)] for _ in range(n)]
-'''
-00 01
-10 11
-'''
+
 dx = [1, -1, 0, 0]
 dy = [0, 0, -1, 1]
 tempSum = 0 

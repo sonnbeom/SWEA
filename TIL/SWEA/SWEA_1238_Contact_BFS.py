@@ -1,6 +1,7 @@
 def bfs(start):
     queue = [start]
     visited[start] = 0
+
     while queue:
         temp = queue.pop(0)
         for i in arr[temp]:

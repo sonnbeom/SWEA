@@ -17,7 +17,7 @@ def dfs(depth, start):
     depthList.append((depth, start)) #dfs를 호출할 때마다 튜플의 형태로 depth와 노드를 튜플형태로 담는다.
 
     for i in range(1, 101): # 숫자 범위가 1~100이므로
-        if arr[start][i] == 1 and visited[i] == False: # 방문하지 않았고, 
+        if arr[start][i] == 1 and visited[i] == False: # 방문하지 않았고, 행렬로 노드가 연결되어있는지
             dfs(depth+1, i)
             # visited[i] = False
 

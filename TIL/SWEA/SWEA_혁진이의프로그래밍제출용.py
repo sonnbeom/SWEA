@@ -96,6 +96,11 @@ for tc in range(1, a+1):
             if temp == '@':
                 return 'YES'
                 break
+            if temp == '.':
+                tmpX = nowX + dx[direc]
+                tmpY = nowY + dy[direc]
+                if arr[tmpY][tmpX] == '.':
+                    return 'NO'
             decide(temp)
             x = nowX
             y = nowY

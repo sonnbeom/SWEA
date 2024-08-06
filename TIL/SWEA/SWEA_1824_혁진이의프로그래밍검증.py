@@ -9,7 +9,9 @@ dx = [1, -1, 0, 0]
 dy = [0, 0, 1, -1]
 # 우 좌 하 상
 direc = 0
-visited = [False for _ in range(16)]
+# visited = [False for _ in range(16)]
+# 메모리, 방향을 담자 메모리와 방향이 같다면 오류 배열에는 [메모리][방향] = (위치)
+visited = [[[] for _ in range(c)] for _ in range(r)]
 memory = 0
 numList = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 def direcChange(req):
@@ -22,9 +24,6 @@ def direcChange(req):
         direc = 3
     else:
         direc = 2
-def RandomDirec():
-    global direc
-    direc = random.randrange(0,4)
 def memoryChange(req):
     global memory
     global direc
@@ -58,16 +57,11 @@ def decide(req):
         memoryChange(req)
     elif req == '.':
         pass
-    elif req == '?':
-        RandomDirec()
     elif req in numList:
         memory = int(req)
 
 arr = [list(input()) for _ in range(r)]
 
-# y = 0
-# x = -1
-# go = True
 res = ''
 
 def check():
@@ -77,46 +71,40 @@ def check():
            res = True
            return res
     return res
-def func():
-    y = 0
-    x = -1
-    go = True
-    while go:
-        if False not in visited:
-            return 'NO'
-            break
-        nowX = x + dx[direc]
-        nowY = y + dy[direc]
-        if 0 > nowY:
-            nowY = r-1
-        elif nowY >= r:
-            nowY = 0
-        elif nowX < 0:
-            nowX = c-1
-        elif nowX >= c:
-            nowX = 0
-        temp = arr[nowY][nowX]
-        if temp == '@':
-            return 'YES'
-            break
-        #이게 아니라 다른 방법인 듯 하다.
-        '''
-        .랑 ? 어떻게 처리할지 고민
-        '''
-        # if temp == '.':
-        #     tmpX = nowX + dx[direc]
-        #     tmpY = nowY + dy[direc]
-        #     if arr[tmpY][tmpX] == '.':
-        #         return 'NO'
-        decide(temp)
-        x = nowX
-        y = nowY
-        visited[memory] = True
+def func(y, x):
+    # go = True
+    # while go:
+    global res
+    nowX = x + dx[direc]
+    nowY = y + dy[direc]
+    if 0 > nowY:
+        nowY = r-1
+    elif nowY >= r:
+        nowY = 0
+    elif nowX < 0:
+        nowX = c-1
+    elif nowX >= c:
+        nowX = 0
+    temp = arr[nowY][nowX]
+    if temp == '@':
+        res = 'YES'
+        return
+    if temp == '?':
+        for i in range(4):
+            qX = nowX + dx[i]
+            qY = nowY + dy[i]
+            func(qY, qX)
+    decide(temp)
+    if (memory, direc) in visited[nowY][nowX]:
+        return
+    visited[nowY][nowX].append((memory, direc))
+    func(nowY, nowX)
+
 can = check()
 if can:
-    res = func()
-else:
-    res = "NO"
+    func(0, -1)
+# else:
+#     res = "NO"
 
 print(res)
     

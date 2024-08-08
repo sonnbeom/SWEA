@@ -99,11 +99,15 @@ def func():
         if temp == '@':
             return 'YES'
             break
-        if temp == '.':
-            tmpX = nowX + dx[direc]
-            tmpY = nowY + dy[direc]
-            if arr[tmpY][tmpX] == '.':
-                return 'NO'
+        #이게 아니라 다른 방법인 듯 하다.
+        '''
+        
+        '''
+        # if temp == '.':
+        #     tmpX = nowX + dx[direc]
+        #     tmpY = nowY + dy[direc]
+        #     if arr[tmpY][tmpX] == '.':
+        #         return 'NO'
         decide(temp)
         x = nowX
         y = nowY

@@ -101,7 +101,7 @@ def func():
             break
         #이게 아니라 다른 방법인 듯 하다.
         '''
-        
+        .랑 ? 어떻게 처리할지
         '''
         # if temp == '.':
         #     tmpX = nowX + dx[direc]

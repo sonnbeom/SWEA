@@ -1,0 +1,18 @@
+t= int(input())//10
+
+tmp = 1
+ans = 3
+def getBoxCount(n):
+    global ans
+    global tmp
+    if n == 1:
+        ans = 1
+    elif n == 2:
+        ans = 3
+    for i in range(n-2):
+        temp = ans
+        ans = ans + 2*tmp
+        tmp = temp
+getBoxCount(t)
+print(ans)
+

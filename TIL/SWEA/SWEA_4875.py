@@ -2,10 +2,6 @@ n = int(input())
 
 arr = [list(map(int, input())) for _ in range(n)]
 
-'''
-00 01
-10 11
-'''
 dx = [1, -1, 0, 0]
 dy = [0, 0, -1, 1]
 visited = [[False for _ in range(n)] for _ in range(n)]
@@ -30,7 +26,6 @@ def findStart():
             return (i, arr[i].index(2))
     return (-1, -1)
 start = findStart()
-print(start)
 if start[0] == -1:
     print(0)
 else:

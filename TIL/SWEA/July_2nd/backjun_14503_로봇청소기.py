@@ -1,5 +1,12 @@
-dx = [0, -1, 0, 1]
+# dx = [0, -1, 0, 1]
+# dy = [-1, 0, 1, 0]
 dy = [-1, 0, 1, 0]
+dx = [0, 1, 0, -1]
+'''
+00 01
+10 11
+
+'''
 t = 0
 def b(d):
     if d == 0:
@@ -21,13 +28,15 @@ def check(y, x):
     return False
 
 def getSpot(y, x, d):
-    d = (d+1) % 4
+    d = (d+3) % 4
+    # d = (d+1) % 4
     for i in range(4):
         nowX = x + dx[d]
         nowY = y + dy[d]
         if room[nowY][nowX] == 0 and visited[nowY][nowX] == 0:
             return (nowY, nowX, d)
-        d = (d+1) % 4
+        d = (d+3) % 4
+        # d = (d+1) % 4
 
 def solution(y, x, d):
     global t 

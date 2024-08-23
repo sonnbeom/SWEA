@@ -3,21 +3,20 @@ import itertools
 from copy import deepcopy
 dx = [1, -1, 0, 0]
 dy = [0, 0, 1, -1]
-def can(visited):
-    for i in range(n):
-        if 0 in visited[i]:
-            return False
-    return True
-def bfs(virus, arr, wall):
+
+def bfs(virus, arr, wall, zero_count):
     global minimum, go
     can_go = False
     distance = 0
+
     q = deque([])
 
     visited = [[0 for _ in range(n)] for _ in range(n)]
+
     for y, x in virus:
         q.append((y, x, 0))
         visited[y][x] = 1
+
     for y, x in wall:
         visited[y][x] = 1
     while q:
@@ -25,14 +24,15 @@ def bfs(virus, arr, wall):
         if d >= minimum:
             can_go = False
             break
-        ans = can(arr)
-        if ans:
+        if zero_count == 0:
             can_go = True
             break
         for i in range(4):
             ny = ty + dy[i]
             nx = tx + dx[i]
             if 0 <= ny < n and 0 <= nx < n and arr[ny][nx] != 1 and visited[ny][nx] != 1:
+                if arr[ny][nx] == 0:
+                    zero_count -= 1
                 visited[ny][nx] = 1
                 arr[ny][nx] = 2
                 q.append((ny, nx, d + 1))
@@ -48,19 +48,23 @@ lab = [list(map(int, input().split())) for _ in range(n)]
 candidate = []
 wall = []
 go = True
+virus_cnt = 0
+wall_cnt = 0
 for y in range(n):
     for x in range(n):
         if lab[y][x] == 2:
             candidate.append((y,x))
+            virus_cnt += 1
         elif lab[y][x] == 1:
             wall.append((y,x))
+            wall_cnt += 1
 
-permutation = itertools.permutations(candidate, m)
-permutation = set(tuple(sorted(p)) for p in permutation)
+permutation = itertools.combinations(candidate, m)
 
+zero_cnt = n * n - virus_cnt - wall_cnt
 for virus in permutation:
     lab_copy = deepcopy(lab)
-    bfs(virus, lab_copy, wall)
+    bfs(virus, lab_copy, wall, zero_cnt)
 
 if minimum != int(1e9):
     print(minimum)

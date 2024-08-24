@@ -64,21 +64,18 @@ def update_smell(visited_update):
 def kill_weak_shark():
     if len(weak_shark_list) == 0:
         return
-    idx_list = []
-    for weak_num in weak_shark_list:
-        for i in range(len(shark)):
-            if weak_num == shark[i][0]:
-                idx_list.append(i)
-    for idx in idx_list:
-        shark.pop(idx)
+    for sh in shark.copy():
+        if sh[0] in weak_shark_list:
+            shark.remove(sh)
+
 def minus_smell():
     for y in range(N):
         for x in range(N):
-            if visited[y][x][0] > 1:
+            if visited[y][x][1] > 1:
                 visited[y][x][1] -= 1
-            elif visited[y][x] == 1:
-                visited[y][x].pop(0)
-                visited[y][x].pop(0)
+            elif visited[y][x][1] == 1:
+                visited[y][x][0] = 0
+                visited[y][x][1] = 0
 
 def move(idx, num, y, x, dir):
     go = 0
@@ -114,8 +111,10 @@ def move(idx, num, y, x, dir):
                     shark[idx][1] = ny
                     shark[idx][2] = nx
                     shark[idx][3] = d
+                    sea[ny][nx] = num
+                    sea[y][x] = 0
                     visited_update.append([y, x]) # 상어 숫자 y, x움직이고 다 줄이고 냄새 있는 곳으로 갔다면 다시 갱신해야 하므로
-
+                    break
 
 N, M, K = map(int, input().split())
 sea = [list(map(int, input().split())) for _ in range(N)]
@@ -140,7 +139,6 @@ for y in range(N):
         if sea[y][x] != 0:
             tmp = [sea[y][x], y, x, direction[sea[y][x] - 1]]
             shark.append(tmp)
-
             visited[y][x][0] = sea[y][x]
             visited[y][x][1] = K
 
@@ -157,16 +155,11 @@ while True:
 
     visited_update = []
     weak_shark_list = []
-
+    print(visited)
     for i in range(len(shark)):
-        # print(f'second {second}')
-        # print(f'i = {i}')
-        # print(*shark)
-        # print(f'샤크 길이 = {len(shark)}')
         s = shark[i]
         d = decide_direction(s[0], s[-1])
-        move(i, s[0], s[1], s[2], d) # def move(idx, num, y, x, dir)
-    print(sea)
+        move(i, s[0], s[1], s[2], d)
     kill_weak_shark()
     minus_smell()
     create_smell()

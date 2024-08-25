@@ -29,14 +29,6 @@
 3 = 왼쪽
 4 = 오른쪽
 4 3 1 2 => dx dy 순서도 맞춰야 한다
-00 01
-10 11
-[
-    [
-        [1,2],
-        [2,3]
-    ]
-]
 
 '''
 dx = [0, 0, -1, 1]
@@ -55,12 +47,6 @@ def create_smell():
         visited[y][x][0] = num
         visited[y][x][1] = K
 
-def update_smell(visited_update):
-    if not (len(visited_update) > 0):
-        return
-    for li in visited_update:
-        y, x = li[0], li[1]
-        visited[y][x][1] = K
 def kill_weak_shark():
     if len(weak_shark_list) == 0:
         return
@@ -113,7 +99,6 @@ def move(idx, num, y, x, dir):
                     shark[idx][3] = d
                     sea[ny][nx] = num
                     sea[y][x] = 0
-                    visited_update.append([y, x]) # 상어 숫자 y, x움직이고 다 줄이고 냄새 있는 곳으로 갔다면 다시 갱신해야 하므로
                     break
 
 N, M, K = map(int, input().split())
@@ -147,7 +132,7 @@ while True:
     if len(shark) == 1:
         print(second)
         break
-    if second > 1000:
+    if second == 1000:
         print(-1)
         break
     second += 1
@@ -155,12 +140,15 @@ while True:
 
     visited_update = []
     weak_shark_list = []
-    print(visited)
+
     for i in range(len(shark)):
         s = shark[i]
         d = decide_direction(s[0], s[-1])
         move(i, s[0], s[1], s[2], d)
+
     kill_weak_shark()
     minus_smell()
     create_smell()
-    update_smell(visited_update)
+
+
+

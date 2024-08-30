@@ -5,9 +5,18 @@ n = 5 m = 4
 1 4
 2 3
 4 3
+
+예상 출력 값: [False, True, True, True, True, False]
+
+n = 5 m = 4
+3 4
+1 4
+2 3
+4 5
+
+예상 출력 값: [False, True, True, True, True, True]
+
 '''
-
-
 
 from collections import deque
 # n, m = map(int, input().split())

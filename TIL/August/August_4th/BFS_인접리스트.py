@@ -19,7 +19,6 @@ n = 5 m = 4
 '''
 
 from collections import deque
-# n, m = map(int, input().split())
 n = 5
 m = 4
 arr = [[] for _ in range(n+1)]

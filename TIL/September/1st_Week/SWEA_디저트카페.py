@@ -9,6 +9,7 @@ dy = [-1, 1, -1, 1]
 
 def get_dessert(y,x,start_y,start_x, cnt):
     if cnt != 1 and y == start_y and x == start_x:
+        pass
 
 
 max_cnt = 0

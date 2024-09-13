@@ -24,10 +24,11 @@ for _ in  range(edge):
 
 ans = dijkstra(X) # 파티 장소에서 각자 집으로 가는 걸 알 수 있다.
 ans[0] = 0
+print(ans)
 
 for i in range(1, node_cnt+1): #각 노드들이 파티에 갈려고 하는 로직
     if i != X:
         res = dijkstra(i)
         ans[i] += res[X]
-
+print(ans)
 print(max(ans))

@@ -6,3 +6,8 @@ a = [-1, -2, -3, -4]
 
 for i in range(1, 3):
     print(a[i])
+
+
+a = []
+a.append(1)
+print(a)

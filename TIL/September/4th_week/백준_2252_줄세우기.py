@@ -24,8 +24,9 @@ def topology():
             q.append(i)
     while q:
         now = q.popleft()
-        idx = 0
+        idx = int(1e9)
         tmp_list = []
+        flag = True
         for next_node in student[now]:
             tmp_list.append(next_node)
             if not visited[next_node]:
@@ -38,15 +39,24 @@ def topology():
                 q.append(next_node)
                 tmp_idx = idx_store_list[next_node]
                 idx = min(idx, tmp_idx)
-                # for i in range(len(result)):
-                #     if result[i] == next_node:
-                #         idx = min(i,idx)
-                #         break
+        if idx == int(1e9): #인덱스 갱신이 안 되면 그냥 첫번째에 넣는다.
+            idx = 0
+            flag = False
         if not visited[now]:
             result.insert(idx, now)
             visited[now] = True
+            idx_store_list[now] = idx
             for i in tmp_list:
                 idx_store_list[i] += 1
+        else:
+            if flag:
+                now_node_idx = idx_store_list[now]
+                result.remove(now)
+                result.insert(idx, now)
+                idx_store_list[now] = idx
+                for i in tmp_list:
+                    idx_store_list[i] += 1
+
 
     return result
 

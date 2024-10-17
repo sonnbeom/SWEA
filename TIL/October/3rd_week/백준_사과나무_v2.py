@@ -1,8 +1,4 @@
-from itertools import combinations
 
-import itertools
-
-a = itertools.combinations([1], 3)
 n = int(input())
 
 arr = list(map(int, input().split()))

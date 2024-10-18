@@ -1,10 +1,26 @@
+def dfs(user_ids, depth, arr, answer):
+    if depth == len(user_ids):
+        arr.sort()
+        temp = tuple(arr)
+        answer.add(temp)
+        return
+
+    user_id = user_ids[depth]
+    for u_id in user_id:
+        if u_id not in arr:
+            arr.append(u_id)
+            dfs(user_ids, depth + 1, arr, answer)
+            arr.remove(u_id)
+
+
 def is_black_user(users, ban_id):
-    res = 0
+    res_user_list = []
     for user in users:
 
         if len(user) != len(ban_id):
             continue
         check = 0
+        temp_user = user
         for i in range(len(user)):
             if ban_id[i] == "*":
                 continue
@@ -12,29 +28,17 @@ def is_black_user(users, ban_id):
                 check += 1
                 break
         if check == 0:
-            res += 1
-    return res
+            res_user_list.append(temp_user)
+    return res_user_list
 
 
 def solution(user_id, banned_id):
-    cnt = []
-    temp_set = set(banned_id)
-    black_list = list(temp_set)
-    for ban_user in black_list:
-        res = is_black_user(user_id, ban_user)
-        print(f'res = {res} ban_user = {ban_user}')
-        if res != 0:
-            cnt.append(res)
+    possible_user_id = []
+    for ban_user in banned_id:
+        res_user_list = is_black_user(user_id, ban_user)
+        if len(res_user_list) >= 1:
+            possible_user_id.append(res_user_list)
 
-    answer = 0
-
-    if len(cnt) == 0:
-        return answer
-    if len(cnt) == 1:
-        answer = 1
-    else:
-        answer = cnt.pop(0)
-        for num in cnt:
-            answer *= num
-
-    return answer
+    answer = set()
+    dfs(possible_user_id, 0, [], answer)
+    return len(answer)

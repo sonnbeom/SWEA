@@ -4,6 +4,7 @@ def solution(s,t):
     global is_can
     q = deque()
     q.append(t)
+    l = (1,2)
 
     while q:
         node = q.popleft()

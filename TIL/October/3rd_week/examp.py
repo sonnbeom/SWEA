@@ -8,3 +8,6 @@ print(l)
 
 node = [1,2,3]
 print(node[:-1])
+node =(1,2,3)
+node.sort()
+print(node)

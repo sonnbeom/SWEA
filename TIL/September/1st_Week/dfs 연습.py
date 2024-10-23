@@ -3,13 +3,13 @@
 [1, 2, 3] [1, 3, 2] [2, 1, 3] [2, 3, 1] [3, 1, 2] [3, 2, 1]
 '''
 
-ex = [1, 2, 3]
-n = 3
+ex = [1, 2, 3, 4, 5]
+n = 5
 tempList = []
 visited = [False for _ in range(n)]
 
 def dfs(depth, arr):
-    if depth == n:
+    if depth == 3:
         tempList.append(arr.copy())  # arr의 복사본을 추가
         return
     for i in range(n):

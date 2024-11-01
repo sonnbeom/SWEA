@@ -84,6 +84,5 @@ for i in range(n):
         cnt += 1
         print(f'y i = {i}')
 
-
 print(cnt)
 

@@ -7,12 +7,10 @@ def rotate(arr):
     res = [list(e) for e in list_tuple]
     print(res)
 
-
-    # reversed_list = arr[::-1]
-    # print(reversed_list)
-    # list_tuple = zip(*reversed_list)
-    # print(list_tuple)
-    # list_list = [list(e) for e in list_tuple]
-    # print(list_list)
-
 rotate(arr)
+
+H = 1
+N = 4
+M = 3
+visited = [[[False for _ in range(M)] for _ in range(N)] for _ in range(H)]
+print(visited)

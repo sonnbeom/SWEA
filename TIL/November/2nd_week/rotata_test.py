@@ -7,4 +7,6 @@ def rotate(arr):
     res = [list(e) for e in list_tuple]
     print(res)
 
+print(f'회전 전 arr = {arr}')
 rotate(arr)
+print(f'회전 후 arr = {arr}')

@@ -5,7 +5,6 @@ arr.append([4,5,6])
 def rotate(arr):
     list_tuple = zip(*arr[::-1])
     res = [list(e) for e in list_tuple]
-    print(res)
     return res
 
 print(f'회전 전 arr = {arr}')

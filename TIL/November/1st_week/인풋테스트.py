@@ -5,3 +5,5 @@ b = arr[:]
 print(b)
 b[0][0] = 100
 print(b)
+if a:
+    print()

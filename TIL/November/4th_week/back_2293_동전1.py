@@ -5,4 +5,3 @@ for i in range(n):
     temp = int(input())
     coins.append(temp)
 
-dp = []

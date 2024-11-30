@@ -1,5 +1,3 @@
-def check_cnt():
-    pass
 
 n, k = map(int, input().split())
 

@@ -14,6 +14,5 @@ for _ in range(n):
     w, v = map(int, input().split())
     bag.append(((w,v)))
 
-bag.sort()
 for w, v in bag:
     func(w, v)

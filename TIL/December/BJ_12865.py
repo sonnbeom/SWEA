@@ -17,4 +17,3 @@ for _ in range(n):
 bag.sort()
 for w, v in bag:
     func(w, v)
-    print(dp)

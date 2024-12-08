@@ -19,5 +19,4 @@ for w, v in bag:
     func(w, v)
     print(dp)
 
-print(dp)
 print(max(dp))

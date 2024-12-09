@@ -17,6 +17,7 @@ for _ in range(n):
 bag.sort()
 for w, v in bag:
     func(w, v)
-    print(f'w = {w} v = {v}')
     print(dp)
 
+print(dp)
+print(max(dp))

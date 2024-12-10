@@ -20,5 +20,3 @@ for w, v in bag:
     print(f'w = {w} v = {v}')
     print(dp)
 
-print(dp)
-print(max(dp))

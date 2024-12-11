@@ -16,3 +16,5 @@ for _ in range(n):
 
 for w, v in bag:
     func(w, v)
+
+print(max(dp))

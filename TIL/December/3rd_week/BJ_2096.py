@@ -22,3 +22,13 @@ if ad:
     print("yes")
 else:
     print("w")
+
+bi = format("0111010", "2")
+print(bi)
+
+bin = "0111010"
+a = int(bin, 2)
+print(a)
+
+for k in range(1, 2):
+    print(k)

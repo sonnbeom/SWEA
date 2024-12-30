@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 def transfer(card, n, seq):
     response = [0 for _ in range(n)]
     for i in range(n):

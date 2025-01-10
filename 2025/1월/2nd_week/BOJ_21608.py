@@ -20,8 +20,6 @@ def find_near(like_list):
                 if arr[ny][nx] in like_list:
                     near_arr[y][x] += 1
     max_num = 0
-    if like_list[0] == 1 and like_list[1] == 3:
-        print(f'near_arr ={near_arr}')
     for y in range(n):
         temp_max_num = max(near_arr[y])
         max_num = max(max_num, temp_max_num)
@@ -51,6 +49,8 @@ def find_most_empty(near_list):
     for i in range(n):
         temp_max_empty = max(empty_list[i])
         max_empty = max(temp_max_empty, max_empty)
+    if max_empty == 0:
+        return near_list
     for y in range(n):
         for x in range(n):
             if arr[y][x]:
@@ -128,9 +128,5 @@ for student, o, t, th, f in students:
         y = near_list[0][0]
         x = near_list[0][1]
         arr[y][x] = student
-    print(f'student = {student} arr= {arr}')
 
-print(f'arr={arr}')
-answer = get_satisfied()
-
-print(answer)
+print(get_satisfied())

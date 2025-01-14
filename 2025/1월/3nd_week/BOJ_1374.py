@@ -1,14 +1,15 @@
 from collections import deque
+import heapq
 n = int(input())
 
 pools = []
 
-q = deque()
+q = []
 for _ in range(n):
     num, s, e = map(int, input().split())
-    temp = [s, num, e]
-    q.append(temp)
-arr.sort()
+    heapq.heappush(q,([s, num, e]))
+
+
 
 
 
